@@ -13,24 +13,28 @@ class CreateBook extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         this.props.onAdd(this.state);
-
-
-        this.setState({
-            id: 0,
-            title: '',
-            author: '',
-            year: '',
-        });
+        this.handleReset(e);
     }
 
     handleValueChange(e) {
         this.setState({
             [e.target.name]: e.target.value
+        });
+    }
+
+    handleReset(e) {
+        e.preventDefault();
+        this.setState({
+            id: 0,
+            title: '',
+            author: '',
+            year: '',
         });
     }
 
@@ -77,7 +81,8 @@ class CreateBook extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <button type="submit">Submit</button>
+                        <button type="submit">{this.state.id ? 'Update': 'Add'}</button>
+                        <button type="botton" onClick={this.handleReset}>Clear</button>
                     </div>
                 </form>
             </div>

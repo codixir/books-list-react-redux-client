@@ -28,7 +28,7 @@ export const createBook = (book) => {
                     const id = response.data;
                     return axios.get(`${url}/${id}`).then((response) => {
                         dispatch(createBookSuccess(response.data));
-                    }).catch((error) => {
+                    }).catch(error => {
                         throw(error);
                     });                                        
                 })
@@ -75,8 +75,8 @@ const updateBook = (dispatch, data) => {
         })
         .catch(error => {
             throw(error);
-        })
-}
+        });
+};
 
 export const deleteBookSuccess = (id) => {
     return {
